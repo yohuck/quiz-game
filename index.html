@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="timer"><h2 id="countdown">Time Left</h2>
-    <h2>Score: 0</h2></div>
+    <h2>Score: <span id="score">0</span></h2></div>
     <div class="center">
         <!-- <div class="title">
             <h1>JavaScript Quiz</h1>
@@ -19,39 +19,41 @@
             <div class="question" id='home'>
                 <h2>The Fellowship of the String</h2>
                 <p>Help! Earth[0] is in great peril! Answer the coding questions before time runs out to help the party defeat darkness once and for all by casting out the Object of Power! 🧙 </p>
+                <p>For each question you answer incorrectly, you will lose 2 seconds - so take care in your responses!</p>
+                <p>For each question you answer correctly, you will gain 5 points. At the end of the quizl, you will gain points for every second left on the clock.</p>
                 <div class='button' id="begin">BEGIN</div>
             </div>
             <div class="question" id='q1'>
                 <h2>Which is the proper syntax for an arrow function that adds two numbers?</h2>
                 <ul>
-                    <li id="oneOne" class="choice"><code>
+                    <li id="oneOne" class="choice wrong"><code>
                         let addTwo = ("num1", "num2") => return "num1" + "num2"
                     </code></li>
-                    <li id="oneTwo" class="choice"><code>
-                        let addTwo = num1, num2) => return num1 + num2
+                    <li id="oneTwo" class="choice answer"><code>
+                        let addTwo = (num1, num2) => return num1 + num2
                     </code></li>
-                    <li id="oneThree" class="choice"><code>
+                    <li id="oneThree" class="choice wrong"><code>
                         addTwo(num1, num2) => returm num1 + num2
                     </code></li>
-                    <li id="oneFour" class="choice"><code>
+                    <li id="oneFour" class="choice wrong"><code>
                         addTwoo = num1, num2 => return (num1 + num2)
                         ❌ ⭕️ ✅ 🚫🥇 🥈 🥉 🧙‍♀️
                     </code></li>
                 </ul>
             </div>
             <div class="question" id='q2'>
-                <h2>Which is the proper syntax for an arrow function that adds two numbers?</h2>
+                <h2>This is example question number 2</h2>
                 <ul>
-                    <li id="oneOne" class="choice"><code>
-                        let addTwo = ("num1", "num2") => return "num1" + "num2"
+                    <li id="oneOne" class="choice answer"><code>
+                        This is the correct answer
                     </code></li>
-                    <li id="oneTwo" class="choice"><code>
+                    <li id="oneTwo" class="choice wrong"><code>
                         let addTwo = num1, num2) => return num1 + num2
                     </code></li>
-                    <li id="oneThree" class="choice"><code>
+                    <li id="oneThree" class="choice wrong"><code>
                         addTwo(num1, num2) => returm num1 + num2
                     </code></li>
-                    <li id="oneFour" class="choice"><code>
+                    <li id="oneFour" class="choice wrong"><code>
                         addTwoo = num1, num2 => return (num1 + num2)
                         ❌ ⭕️ ✅ 🚫🥇 🥈 🥉 🧙‍♀️
                     </code></li>
@@ -60,52 +62,33 @@
             <div class="question" id='q3'>
                 <h2>Which is the proper syntax for an arrow function that adds two numbers?</h2>
                 <ul>
-                    <li id="oneOne" class="choice"><code>
+                    <li id="oneOne" class="choice wrong"><code>
                         let addTwo = ("num1", "num2") => return "num1" + "num2"
                     </code></li>
-                    <li id="oneTwo" class="choice"><code>
+                    <li id="oneTwo" class="choice wrong"><code>
                         let addTwo = num1, num2) => return num1 + num2
                     </code></li>
-                    <li id="oneThree" class="choice"><code>
+                    <li id="oneThree" class="choice wrong"><code>
                         addTwo(num1, num2) => returm num1 + num2
                     </code></li>
-                    <li id="oneFour" class="choice"><code>
-                        addTwoo = num1, num2 => return (num1 + num2)
-                        ❌ ⭕️ ✅ 🚫🥇 🥈 🥉 🧙‍♀️
+                    <li id="oneFour" class="choice answer"><code>
+                        This is the answer for this one
                     </code></li>
                 </ul>
             </div>
             <div class="question" id='q4'>
                 <h2>Which is the proper syntax for an arrow function that adds two numbers?</h2>
                 <ul>
-                    <li id="oneOne" class="choice"><code>
+                    <li id="oneOne" class="choice wrong"><code>
                         let addTwo = ("num1", "num2") => return "num1" + "num2"
                     </code></li>
-                    <li id="oneTwo" class="choice"><code>
+                    <li id="oneTwo" class="choice wrong"><code>
                         let addTwo = num1, num2) => return num1 + num2
                     </code></li>
-                    <li id="oneThree" class="choice"><code>
-                        addTwo(num1, num2) => returm num1 + num2
+                    <li id="last" class="choice answer"><code>
+                        How about this one now
                     </code></li>
-                    <li id="oneFour" class="choice"><code>
-                        addTwoo = num1, num2 => return (num1 + num2)
-                        ❌ ⭕️ ✅ 🚫🥇 🥈 🥉 🧙‍♀️
-                    </code></li>
-                </ul>
-            </div>
-            <div class="question" id='q5'>
-                <h2>Which is the proper syntax for an arrow function that adds two numbers?</h2>
-                <ul>
-                    <li id="oneOne" class="choice"><code>
-                        let addTwo = ("num1", "num2") => return "num1" + "num2"
-                    </code></li>
-                    <li id="oneTwo" class="choice"><code>
-                        let addTwo = num1, num2) => return num1 + num2
-                    </code></li>
-                    <li id="oneThree" class="choice"><code>
-                        addTwo(num1, num2) => returm num1 + num2
-                    </code></li>
-                    <li id="oneFour" class="choice"><code>
+                    <li id="oneFour" class="choice wrong"><code>
                         addTwoo = num1, num2 => return (num1 + num2)
                         ❌ ⭕️ ✅ 🚫🥇 🥈 🥉 🧙‍♀️
                     </code></li>

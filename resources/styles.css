@@ -40,8 +40,8 @@ body {
 
 .card {
     /* border: 1px solid red; */
-    width: 95%;
-    max-width: 800px;
+    width: 90%;
+    max-width: 500px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -58,7 +58,7 @@ body {
 .question {
     /* margin: 1rem; */
     width: 100%;
-    max-width: 900px;
+    max-width: 500px;
     background-color: rgb(175, 234, 234);
     padding: 0rem;
     border-radius: 10px;
