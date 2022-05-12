@@ -22,6 +22,10 @@ body {
     background-color: var(--bg)
 }
 
+p {
+    max-width: 300px;
+}
+
 .timer {
     position: fixed;
     top: 0.5rem;
@@ -80,8 +84,13 @@ body {
     align-items: center;
 }
 
-.question h2, .question p {
+.question h2 {
     margin: 1.3rem 1rem;
+    line-height: 2rem;
+}
+
+.question p {
+    margin: 1rem 1rem;
     line-height: 1.5rem;
 }
 
