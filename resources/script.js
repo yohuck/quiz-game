@@ -14,18 +14,17 @@ let didYouWinSpan = document.getElementById('didYouWin');
 let firstInfo = document.getElementById('firstInfo');
 let secondInfo = document.getElementById('secondInfo');
 let thirdInfo = document.getElementById('thirdInfo');
-let nameSubmit = ''
+let nameSubmit = '';
+let scoreNum = 0;;
+let didYouWin = '';
 
-
-
-
-
-
-
+// Scoring elments created by javascript
 const enterYourName = document.createElement("input");
 const enterYourNameLabel = document.createElement("label");
 const submitButton = document.createElement("div");
 
+
+// Adds styling & attributes to scoring elements
 submitButton.setAttribute('class', 'submitter button');
 submitButton.setAttribute('id','submitter');
 submitButton.innerHTML = '<h4>Submit</h4>'
@@ -35,20 +34,16 @@ enterYourName.setAttribute('id', 'enterName');
 enterYourNameLabel.setAttribute('for', 'enterName');
 enterYourNameLabel.innerHTML = 'Enter your initials:';
 
+//Adds scoring capture to final card
 lastCard.append(enterYourNameLabel);
 lastCard.append(enterYourName);
 lastCard.append(submitButton);
 
 
 
-
- // Initializes variables
-let scoreNum = 0;
-let didYouWin = ''
-
 // Sets local storage;
-var highScore = localStorage.getItem("highScore");
-localStorage.setItem("highScore", scoreNum);
+// var highScore = localStorage.getItem("highScore");
+// localStorage.setItem("highScore", scoreNum);
 
 
 
@@ -116,23 +111,16 @@ let addLast = () => {
         setTime(0);
        topRight.style.display = 'none';
        finalScore.textContent = scoreNum;
-       localStorage.setItem("highScore", scoreNum);
 
        if (scoreNum > topThreeJs[2].score) {
-           if (scoreNum > topThreeJs[1].score){
-               if (scoreNum > topThreeJs[1].score){
-                   console.log('first place')
-               }
-               console.log('second place')
-           }
+        //    if (scoreNum > topThreeJs[1].score){
+        //        if (scoreNum > topThreeJs[1].score){
+        //            console.log('first place')
+        //        }
+        //        console.log('second place')
+        //    }
            console.log('yep');
        } else didYouWinSpan.textContent = 'Better luck next time'
-        // scoreNum += 5;
-        // this.parentElement.parentElement.style.transform = 'translate(-105%)';
-        // this.parentElement.parentElement.nextElementSibling.style.transform = 'translate(0%)';
-        // clearInterval(3);
-        
-        // countdown.textContent= 'Game ended'
         scoreElement.textContent = scoreNum;
 
     })
