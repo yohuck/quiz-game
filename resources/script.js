@@ -33,8 +33,9 @@ submitButton.setAttribute('class', 'submitter button');
 submitButton.setAttribute('id','submitter');
 submitButton.innerHTML = '<h4>Submit</h4>'
 submitButton.setAttribute('value','post');
-enterYourName.setAttribute('name', 'enterName')
+enterYourName.setAttribute('name', 'enterName');
 enterYourName.setAttribute('id', 'enterName');
+enterYourName.setAttribute('maxlength','3');
 enterYourNameLabel.setAttribute('for', 'enterName');
 enterYourNameLabel.innerHTML = 'Enter your initials:';
 
@@ -115,7 +116,7 @@ let addLast = () => {
             lastCard.append(submitButton);
             let submitts = document.getElementById('submitter');
             submitts.addEventListener('click', function() {
-                nameSubmit = enterYourName.value;
+                nameSubmit = enterYourName.value.toUpperCase();
                 if (scoreNum > topThreeJs[0].score){
                     thirdPlace.score = topThreeJs[1].score;
                     thirdPlace.name = topThreeJs[1].name;
