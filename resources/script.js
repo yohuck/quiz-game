@@ -1,3 +1,4 @@
+// Selecting items in HTML
 let countdown = document.getElementById('countdown');
 let home = document.getElementById('home');
 let q1 = document.getElementById('q1')
@@ -6,6 +7,7 @@ let correctAnswer = document.getElementsByClassName('answer');
 let incorrectAnswer = document.getElementsByClassName('wrong');
 let scoreElement = document.getElementById('score');
 let lastElement = document.getElementById('last');
+ // Initializes variables
 let scoreNum = 0;
 
 
@@ -14,8 +16,6 @@ scoreElement.textContent = scoreNum;
 
 
 
-
-// console.dir(choices[0]);
 
 let addCorrect = () => {
     for (let i = 0; i < correctAnswer.length; i++) {
@@ -45,13 +45,15 @@ let addIncorrect = () => {
 
 let addLast = () => {
     lastElement.addEventListener('click', function() {
+        scoreNum+= timeLeft;
+        clearInterval(3);
+        setTime(0);
         // scoreNum += 5;
         // this.parentElement.parentElement.style.transform = 'translate(-105%)';
         // this.parentElement.parentElement.nextElementSibling.style.transform = 'translate(0%)';
-        clearInterval(3);
-        console.log('last');
-        console.log(timeLeft);
-        scoreNum+= timeLeft;
+        // clearInterval(3);
+        
+        // countdown.textContent= 'Game ended'
         scoreElement.textContent = scoreNum;
 
     })
@@ -59,19 +61,27 @@ let addLast = () => {
 
 
 begin.addEventListener('click', function(){
-    setTime();
+    setTime(60);
     home.style.transform = 'translateX(-105%)'
     q1.style.transform = 'translateX(0%)'
 })
 
 
 
-let timeLeft = 60;
-let setTime = () => {
-    let timerInterval = setInterval(function(){
-        timeLeft--;
-        countdown.textContent = timeLeft;
+let timeLeft = 0;
+let setTime = (starting) => {
+    timeLeft= starting
+    var timerInterval = setInterval(function(){
+        
+        countdown.textContent = 'Time left: ' + timeLeft;
         console.log(timerInterval);
+
+        if(timeLeft <= 0){
+            clearInterval(4);
+            console.log('time ran out');
+            // timeleft++;
+            // clearInterval(3);
+        } else timeLeft--;
     }, 1000);
     
 }
@@ -87,12 +97,12 @@ let quizTimer = () => {
 
 // q1.style.transform = 'translateX(-100%)'
 
-let startQuiz = () => {
-    setTime();
-    let countdown = setInterval(function(){quizTimer()}, 1000);
-    console.log(countdown);
-    // console.log(event);
-}
+// let startQuiz = () => {
+//     setTime(60);
+//     let countdown = setInterval(function(){quizTimer()}, 1000);
+//     console.log(countdown);
+//     // console.log(event);
+// }
 
 addCorrect();
 addIncorrect();
