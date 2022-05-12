@@ -18,6 +18,10 @@ let nameSubmit = '';
 let scoreNum = 0;;
 let didYouWin = '';
 
+// Default score & transform for first card
+home.style.transform = 'translateX(0%)';
+scoreElement.textContent = scoreNum;
+
 // Scoring elments created by javascript
 const enterYourName = document.createElement("input");
 const enterYourNameLabel = document.createElement("label");
@@ -35,7 +39,7 @@ enterYourNameLabel.setAttribute('for', 'enterName');
 enterYourNameLabel.innerHTML = 'Enter your initials:';
 
 
-
+// Default Top Scores
 let topScore = {
     position: 1,
     score: 40,
@@ -54,111 +58,103 @@ let thirdPlace = {
     name: 'TOM'
 }
 
+//Default Top Three
 let topThree = [topScore, secondPlace, thirdPlace];
 let onload = () => {
-if (! localStorage.getItem('top-three')) {
-localStorage.setItem("top-three", JSON.stringify(topThree));
-} else {
-    topScore = JSON.parse(localStorage.getItem('top-three'))[0];
-    secondPlace = JSON.parse(localStorage.getItem('top-three'))[1];
-    thirdPlace = JSON.parse(localStorage.getItem('top-three'))[2];
+    if (! localStorage.getItem('top-three')) {
+        localStorage.setItem("top-three", JSON.stringify(topThree));
+    } else {
+        topScore = JSON.parse(localStorage.getItem('top-three'))[0];
+        secondPlace = JSON.parse(localStorage.getItem('top-three'))[1];
+        thirdPlace = JSON.parse(localStorage.getItem('top-three'))[2];
 }}
 
+// Default JSON to JS for Top Three from storage
 let topThreeJs = JSON.parse(localStorage.getItem('top-three'));
 
-
-home.style.transform = 'translateX(0%)';
-scoreElement.textContent = scoreNum;
-
-
-
-
+// Adds functionality for correct answers
 let addCorrect = () => {
     for (let i = 0; i < correctAnswer.length; i++) {
-    correctAnswer[i].addEventListener('click',function(){
-        console.log('clicked an answer');
-        console.log(this.parentElement.parentElement);
-        scoreNum += 5;
-        scoreElement.textContent = scoreNum;
-        console.log(scoreNum)
-        this.parentElement.parentElement.style.transform = 'translate(-105%)';
-        this.parentElement.parentElement.nextElementSibling.style.transform = 'translate(0%)';
-    })
+        correctAnswer[i].addEventListener('click',function(){
+            console.log('clicked an answer');
+            console.log(this.parentElement.parentElement);
+            scoreNum += 5;
+            scoreElement.textContent = scoreNum;
+            console.log(scoreNum)
+            this.parentElement.parentElement.style.transform = 'translate(-105%)';
+            this.parentElement.parentElement.nextElementSibling.style.transform = 'translate(0%)';
+        })
+    }
 }
-}
+
+// Adds functionality for incorrect answers
 let addIncorrect = () => {
     for (let i = 0; i < incorrectAnswer.length; i++) {
-    incorrectAnswer[i].addEventListener('click',function(){
-        console.log('clicked an answer');
-        console.log(this.parentElement.parentElement);
-        this.style.backgroundColor = 'var(--danger)';
-        this.style.color = 'var(--bg)'
-        timeLeft -= 2;
-        // clearInterval(quizInterval);
-
-    })
-}
+        incorrectAnswer[i].addEventListener('click',function(){
+            console.log('clicked an answer');
+            console.log(this.parentElement.parentElement);
+            this.style.backgroundColor = 'var(--danger)';
+            this.style.color = 'var(--bg)'
+            timeLeft -= 2;
+        })
+    }
 }
 
+// Adds functionality for correct last quiz question.
 let addLast = () => {
     lastElement.addEventListener('click', function() {
         scoreNum+= timeLeft;
         clearInterval(3);
         setTime(0);
-       topRight.style.display = 'none';
-       finalScore.textContent = scoreNum;
-       let topThreeJs = JSON.parse(localStorage.getItem('top-three'));
-       if (scoreNum > topThreeJs[2].score) {
-        lastCard.append(enterYourNameLabel);
-        lastCard.append(enterYourName);
-        lastCard.append(submitButton);
-
-        let submitts = document.getElementById('submitter');
-        // let nameInput = document.getElementById('enterName');
-submitts.addEventListener('click', function() {
-    nameSubmit = enterYourName.value;
-    console.log(nameSubmit);
-    console.log(topThreeJs)
-    if (scoreNum > topThreeJs[0].score){
-            thirdPlace.score = topThreeJs[1].score;
-            thirdPlace.name = topThreeJs[1].name;
-            secondPlace.score = topThreeJs[0].score;
-            secondPlace.name = topThreeJs[0].name;
-            topScore.score = scoreNum;
-            topScore.name = nameSubmit;
-            firstInfo.textContent = topScore.name + " " + topScore.score;
-            secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
-            thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
-            topThree = [topScore, secondPlace, thirdPlace]
-            localStorage.setItem("top-three", JSON.stringify(topThree));
-       } else if (scoreNum > topThreeJs[1].score){
-        thirdPlace.score = topThreeJs[1].score;
-        thirdPlace.name = topThreeJs[1].name;
-        secondPlace.score = scoreNum;
-        secondPlace.name = nameSubmit;
-        firstInfo.textContent = topScore.name + " " + topScore.score;
-secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
-thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
-localStorage.setItem("top-three", JSON.stringify(topThree));
-    }else if (scoreNum > topThreeJs[2].score){
-        thirdPlace.score = scoreNum;
-        thirdPlace.name = nameSubmit;
-        firstInfo.textContent = topScore.name + " " + topScore.score;
-secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
-thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
-localStorage.setItem("top-three", JSON.stringify(topThree));
-    }
-    }
-)
-
-           console.log('yep');
-       } else didYouWinSpan.textContent = 'Better luck next time'
-        scoreElement.textContent = scoreNum;
-
+        topRight.style.display = 'none';
+        finalScore.textContent = scoreNum;
+        let topThreeJs = JSON.parse(localStorage.getItem('top-three'));
+        if (scoreNum > topThreeJs[2].score) {
+            lastCard.append(enterYourNameLabel);
+            lastCard.append(enterYourName);
+            lastCard.append(submitButton);
+            let submitts = document.getElementById('submitter');
+            submitts.addEventListener('click', function() {
+                nameSubmit = enterYourName.value;
+                if (scoreNum > topThreeJs[0].score){
+                    thirdPlace.score = topThreeJs[1].score;
+                    thirdPlace.name = topThreeJs[1].name;
+                    secondPlace.score = topThreeJs[0].score;
+                    secondPlace.name = topThreeJs[0].name;
+                    topScore.score = scoreNum;
+                    topScore.name = nameSubmit;
+                    firstInfo.textContent = topScore.name + " " + topScore.score;
+                    secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
+                    thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
+                    topThree = [topScore, secondPlace, thirdPlace];
+                    localStorage.setItem("top-three", JSON.stringify(topThree));
+                } else if (scoreNum > topThreeJs[1].score){
+                    thirdPlace.score = topThreeJs[1].score;
+                    thirdPlace.name = topThreeJs[1].name;
+                    secondPlace.score = scoreNum;
+                    secondPlace.name = nameSubmit;
+                    firstInfo.textContent = topScore.name + " " + topScore.score;
+                    secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
+                    thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
+                    topThree = [topScore, secondPlace, thirdPlace];
+                    localStorage.setItem("top-three", JSON.stringify(topThree));
+                } else if (scoreNum > topThreeJs[2].score){
+                    thirdPlace.score = scoreNum;
+                    thirdPlace.name = nameSubmit;
+                    firstInfo.textContent = topScore.name + " " + topScore.score;
+                    secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
+                    thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
+                    localStorage.setItem("top-three", JSON.stringify(topThree));
+                    }
+            })
+        } else {
+            didYouWinSpan.textContent = 'Better luck next time'
+            scoreElement.textContent = scoreNum;
+        }
     })
 }
 
-
+// Adds functionality for begin button
 begin.addEventListener('click', function(){
     setTime(60);
     home.style.transform = 'translateX(-105%)'
@@ -166,15 +162,13 @@ begin.addEventListener('click', function(){
 })
 
 
-
+// Timer functionality
 let timeLeft = 0;
 let setTime = (starting) => {
     timeLeft= starting
     var timerInterval = setInterval(function(){
-        
         countdown.textContent = 'Time left: ' + timeLeft;
         console.log(timerInterval);
-
         if(timeLeft <= 0){
             clearInterval(4);
             console.log('time ran out');
@@ -185,14 +179,15 @@ let setTime = (starting) => {
     
 }
 
-
+// Initializes quiz;
 addCorrect();
 addIncorrect();
 addLast();
 onload();
 
+// Adds the scores to the hall of fame
 firstInfo.textContent = topScore.name + " " + topScore.score;
 secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
 thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
 
-// clearInterval(quizInterval);
+
