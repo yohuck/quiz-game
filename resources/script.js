@@ -208,6 +208,29 @@ submitts.addEventListener('click', function() {
 secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
 thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
 localStorage.setItem("top-three", JSON.stringify(topThree));
-       }
+       } else if (scoreNum > topThreeJs[1].score){
+        thirdPlace.score = topThreeJs[1].score;
+        thirdPlace.name = topThreeJs[1].name;
+        secondPlace.score = scoreNum;
+        secondPlace.name = nameSubmit;
+        firstInfo.textContent = topScore.name + " " + topScore.score;
+secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
+thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
+localStorage.setItem("top-three", JSON.stringify(topThree));
+    }else if (scoreNum > topThreeJs[2].score){
+        thirdPlace.score = scoreNum;
+        thirdPlace.name = nameSubmit;
+        firstInfo.textContent = topScore.name + " " + topScore.score;
+secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
+thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
+localStorage.setItem("top-three", JSON.stringify(topThree));
+    }
+
+
+
+
+
+
+
     }
 )
