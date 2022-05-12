@@ -1,3 +1,11 @@
+:root {
+    --primary: #111D4A;
+    --accent: #FDCA40;
+    --bg: #E8EEF2;
+    --danger: #a12e25;
+    --dark: #1E1E24;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -7,11 +15,11 @@
 body {
     /* height: 100vh; */
     font-family: sans-serif;
-    color: rgb(53, 49, 118);
+    color:var(--accent);
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(164, 188, 249);
+    background-color: var(--bg)
 }
 
 .timer {
@@ -21,6 +29,7 @@ body {
     text-align: right;
     line-height: 1.5rem;
     z-index: 10;
+    color: var(--primary);
 }
 
 .title {
@@ -59,7 +68,7 @@ body {
     /* margin: 1rem; */
     width: 100%;
     max-width: 500px;
-    background-color: rgb(175, 234, 234);
+    background-color: var(--primary);
     padding: 0rem;
     border-radius: 10px;
     transition: .7s ease-in-out;
@@ -83,14 +92,15 @@ ul {
 }
 
 li {
-    background-color: rgb(92, 244, 153);
+    background-color: var(--accent);
+    color: var(--primary);
     margin: 1rem auto;
     padding: 1rem;
-    box-shadow: 3px 3px 3px 2px rgb(136, 136, 136);
+    box-shadow: 3px 3px 3px 2px var(--dark);
 }
 
 li:hover {
-    box-shadow: 3px 3px 3px 2px rgb(210, 50, 50);
+    box-shadow: 3px 3px 3px 2px var(--dark);
     cursor: pointer;
 }
 
@@ -98,17 +108,21 @@ li:hover {
     margin: 1.3rem 0;
     padding: 1rem 2rem;
     font-family: sans-serif;
-    background-color: bisque;
+    background-color: var(--accent);
+    color: var(--primary);
     border: none;
     border-radius: 3px;
     font-weight: bold;
     letter-spacing: 1.3px;
-    box-shadow: 3px 3px 3px 2px rgb(136, 136, 136);
+    box-shadow: 3px 3px 3px 2px var(--dark);
 }
 
 .button:hover {
     cursor: pointer;
-    box-shadow: 3px 3px 3px 2px rgb(210, 50, 50);
+    box-shadow: 3px 3px 3px 2px var(--dark);
 
 }
 
+label {
+    margin: 1rem 0;
+}

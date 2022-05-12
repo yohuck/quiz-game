@@ -26,7 +26,7 @@ const enterYourName = document.createElement("input");
 const enterYourNameLabel = document.createElement("label");
 const submitButton = document.createElement("div");
 
-submitButton.setAttribute('class', 'submitter');
+submitButton.setAttribute('class', 'submitter button');
 submitButton.setAttribute('id','submitter');
 submitButton.innerHTML = '<h4>Submit</h4>'
 submitButton.setAttribute('value','post');
@@ -100,7 +100,8 @@ let addIncorrect = () => {
     incorrectAnswer[i].addEventListener('click',function(){
         console.log('clicked an answer');
         console.log(this.parentElement.parentElement);
-        this.style.backgroundColor = 'red';
+        this.style.backgroundColor = 'var(--danger)';
+        this.style.color = 'var(--bg)'
         timeLeft -= 2;
         // clearInterval(quizInterval);
 
