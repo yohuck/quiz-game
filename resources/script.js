@@ -73,7 +73,7 @@ let onload = () => {
 }}
 
 // Default JSON to JS for Top Three from storage
-let topThreeJs = JSON.parse(localStorage.getItem('top-three'));
+// let topThreeJs = JSON.parse(localStorage.getItem('top-three'));
 
 // Adds functionality for correct answers
 let addCorrect = () => {
@@ -141,6 +141,11 @@ let addLast = () => {
                 } else if (scoreNum > topThreeJs[2].score){
                     thirdPlace.score = scoreNum;
                     thirdPlace.name = nameSubmit;
+                    // secondPlace.score = topThreeJs[1];
+                    // secondPlace.name = topThreeJs[1];
+                    // topScore.score = topThreeJs[0];
+                    // topScore.name = topThreeJs[0];
+                    topThree = [topScore, secondPlace, thirdPlace];
                     firstInfo.textContent = topScore.name + " " + topScore.score;
                     secondInfo.textContent = secondPlace.name +" " + secondPlace.score;
                     thirdInfo.textContent = thirdPlace.name + " " + thirdPlace.score;
