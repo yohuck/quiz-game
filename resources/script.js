@@ -15,8 +15,10 @@ let firstInfo = document.getElementById('firstInfo');
 let secondInfo = document.getElementById('secondInfo');
 let thirdInfo = document.getElementById('thirdInfo');
 let nameSubmit = '';
-let scoreNum = 0;;
+let scoreNum = 0;
 let didYouWin = '';
+let startTimeBoolean = false;
+let timeLeft = 60;
 
 // Default score & transform for first card
 home.style.transform = 'translateX(0%)';
@@ -77,11 +79,8 @@ let topThreeJs = JSON.parse(localStorage.getItem('top-three'));
 let addCorrect = () => {
     for (let i = 0; i < correctAnswer.length; i++) {
         correctAnswer[i].addEventListener('click',function(){
-            console.log('clicked an answer');
-            console.log(this.parentElement.parentElement);
             scoreNum += 5;
             scoreElement.textContent = scoreNum;
-            console.log(scoreNum)
             this.parentElement.parentElement.style.transform = 'translate(-105%)';
             this.parentElement.parentElement.nextElementSibling.style.transform = 'translate(0%)';
         })
@@ -92,8 +91,6 @@ let addCorrect = () => {
 let addIncorrect = () => {
     for (let i = 0; i < incorrectAnswer.length; i++) {
         incorrectAnswer[i].addEventListener('click',function(){
-            console.log('clicked an answer');
-            console.log(this.parentElement.parentElement);
             this.style.backgroundColor = 'var(--danger)';
             this.style.color = 'var(--bg)'
             timeLeft -= 2;
@@ -105,8 +102,10 @@ let addIncorrect = () => {
 let addLast = () => {
     lastElement.addEventListener('click', function() {
         scoreNum+= timeLeft;
-        clearInterval(3);
-        setTime(0);
+        // clearInterval(3);
+        // setTime(0);
+        startTimeBoolean = false;
+        timerFunctionality()
         topRight.style.display = 'none';
         finalScore.textContent = scoreNum;
         let topThreeJs = JSON.parse(localStorage.getItem('top-three'));
@@ -157,27 +156,31 @@ let addLast = () => {
 
 // Adds functionality for begin button
 begin.addEventListener('click', function(){
-    setTime(60);
+    // setTime(60);
+    startTimeBoolean = true;
     home.style.transform = 'translateX(-105%)'
     q1.style.transform = 'translateX(0%)'
+    timerFunctionality();
 })
 
-
-// Timer functionality
-let timeLeft = 0;
-let setTime = (starting) => {
-    timeLeft= starting
-    var timerInterval = setInterval(function(){
-        countdown.textContent = 'Time left: ' + timeLeft;
-        console.log(timerInterval);
-        if(timeLeft <= 0){
-            clearInterval(4);
-            console.log('time ran out');
-            // timeleft++;
-            // clearInterval(3);
-        } else timeLeft--;
-    }, 1000);
-    
+// Sets & clears the timer interval
+let timerFunctionality = () => {
+    if (startTimeBoolean == true) {
+    // Timer functionality
+    // let timeLeft = 0;
+    // let setTime = {
+        var timerInterval = setInterval(function(){
+            countdown.textContent = 'Time left: ' + timeLeft;
+            // console.log(timerInterval);
+            if(timeLeft <= 0){
+                clearInterval(4);
+                // timeleft++;
+                // clearInterval(3);
+            } else timeLeft--;
+        }, 1000);
+        
+    // }
+    } else clearInterval(3)
 }
 
 // Initializes quiz;
